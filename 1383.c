@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+// comentário para teste de commit
 int main(void) {
     int T;
     if (scanf("%d", &T) != 1) return 0;
