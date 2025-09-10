@@ -1,11 +1,8 @@
 #include <stdio.h>
-// comentário para teste de commit
-int main(void) {
-    int T;
-    if (scanf("%d", &T) != 1) return 0;
 
-    const int FULL = 0x3FE; /* bits 1..9 ligados (1022) */
-    int mat[9][9];
+int main(void) {
+    int T, mat[9][9];
+    if (scanf("%d", &T) != 1) return 0;
 
     for (int inst = 1; inst <= T; inst++) {
         for (int i = 0; i < 9; i++)
@@ -16,43 +13,51 @@ int main(void) {
 
         /* Verifica linhas */
         for (int i = 0; i < 9 && ok; i++) {
-            int mask = 0;
-            for (int j = 0; j < 9; j++) {
+            int seen[10] = {0};
+            for (int j = 0; j < 9 && ok; j++) {
                 int v = mat[i][j];
-                if (v < 1 || v > 9) { ok = 0; break; }
-                mask |= (1 << v);
+                if (v < 1 || v > 9 || seen[v]) ok = 0;
+                else seen[v] = 1;
             }
-            if (mask != FULL) ok = 0;
         }
 
         /* Verifica colunas */
         for (int j = 0; j < 9 && ok; j++) {
-            int mask = 0;
-            for (int i = 0; i < 9; i++) {
+            int seen[10] = {0};
+            for (int i = 0; i < 9 && ok; i++) {
                 int v = mat[i][j];
-                if (v < 1 || v > 9) { ok = 0; break; }
-                mask |= (1 << v);
+                if (v < 1 || v > 9 || seen[v]) ok = 0;
+                else seen[v] = 1;
             }
-            if (mask != FULL) ok = 0;
         }
 
-        /* Verifica submatrizes 3x3 */
+        /* Verifica blocos 3x3 */
         for (int si = 0; si < 9 && ok; si += 3) {
             for (int sj = 0; sj < 9 && ok; sj += 3) {
-                int mask = 0;
-                for (int i = 0; i < 3; i++)
-                    for (int j = 0; j < 3; j++) {
-                        int v = mat[si + i][sj + j];
-                        if (v < 1 || v > 9) { ok = 0; i = 3; j = 3; break; }
-                        mask |= (1 << v);
+                int seen[10] = {0};
+                for (int di = 0; di < 3 && ok; di++) {
+                    for (int dj = 0; dj < 3 && ok; dj++) {
+                        int v = mat[si + di][sj + dj];
+                        if (v < 1 || v > 9 || seen[v]) ok = 0;
+                        else seen[v] = 1;
                     }
-                if (mask != FULL) ok = 0;
+                }
             }
         }
 
+        /* Saída no formato do beecrowd 1383 */
         printf("Instancia %d\n", inst);
-        printf(ok ? "SIM\n\n" : "NAO\n\n");
+        switch (ok) {
+            case 1:
+                puts("SIM");   /* imprime "SIM\n" */
+                break;
+            default:
+                puts("NAO");   /* imprime "NAO\n" */
+                break;
+        }
+        puts(""); /* linha em branco após cada instância */
     }
 
     return 0;
 }
+
