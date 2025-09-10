@@ -45,8 +45,10 @@ int main(void) {
             }
         }
 
-        /* Saída no formato do beecrowd 1383 */
+       
         printf("Instancia %d\n", inst);
+        
+        //printf de sim ou nao
         switch (ok) {
             case 1:
                 puts("SIM");   /* imprime "SIM\n" */
@@ -58,6 +60,6 @@ int main(void) {
         puts(""); /* linha em branco após cada instância */
     }
 
-    return 0;
+    return 0; 
 }
 
