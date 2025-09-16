@@ -1,5 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h> 
 
+//programa que verifica se uma solução de Sudoku é válida
 int main() {
     int T, mat[9][9];
     if (scanf("%d", &T) != 1) return 0;
