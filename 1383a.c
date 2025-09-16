@@ -6,7 +6,6 @@ int main() {
     int T, mat[9][9];
     if (scanf("%d", &T) != 1) return 0;
 
-
     for (int inst = 1; inst <= T; inst++) {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
@@ -59,7 +58,6 @@ int main() {
                 printf("NAO\n\n");
                 break;
         }
-
+    }
     return 0; 
 }
-
