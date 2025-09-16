@@ -1,34 +1,29 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-int main() {
+int main(void) {
     int N;
-    scanf("%d", &N);
+    if (scanf("%d", &N) != 1 || N <= 0) return 0;
 
-    int *X = (int*) malloc(N * sizeof(int)); // alocação dinâmica
-    if (X == NULL) {
-        printf("Erro ao alocar memória.\n");
-        return 1;
-    }
+    int X[N];              
+    int *p = X;            /* ponteiro para o início do vetor */
 
-    // leitura dos elementos
+    /* leitura usando ponteiros */
     for (int i = 0; i < N; i++) {
-        scanf("%d", (X + i));
+        scanf("%d", p + i);
     }
 
-    int menor = *X;   // primeiro elemento
+    int menor = *p;        /* primeiro elemento via ponteiro */
     int posicao = 0;
 
+    /* busca do menor usando aritmética de ponteiros */
     for (int i = 1; i < N; i++) {
-        if (*(X + i) < menor) {
-            menor = *(X + i);
+        if (*(p + i) < menor) {
+            menor = *(p + i);
             posicao = i;
         }
     }
 
     printf("Menor valor: %d\n", menor);
     printf("Posicao: %d\n", posicao);
-
-    free(X); // libera a memória alocada
     return 0;
 }
