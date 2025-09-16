@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+    // versão com alocação dinâmica de memória
+
 int main(){
     int N;
     int *X = NULL;             // 1) ponteiro para o vetor
