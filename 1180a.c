@@ -1,6 +1,8 @@
 
 #include <stdio.h>
 
+//programa de localização do menor valor em um vetor sem ponteiros
+
 int main() {
     int N;
     scanf("%d", &N);  
@@ -19,7 +21,6 @@ int main() {
     }
     printf("Menor valor: %d\n", menor);
     printf("Posicao: %d\n", posicao);
-    
 
     return 0;
 }

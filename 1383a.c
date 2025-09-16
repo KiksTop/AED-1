@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main(void) {
+int main() {
     int T, mat[9][9];
     if (scanf("%d", &T) != 1) return 0;
 
