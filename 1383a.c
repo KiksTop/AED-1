@@ -4,10 +4,13 @@ int main(void) {
     int T, mat[9][9];
     if (scanf("%d", &T) != 1) return 0;
 
+
     for (int inst = 1; inst <= T; inst++) {
-        for (int i = 0; i < 9; i++)
-            for (int j = 0; j < 9; j++)
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
                 scanf("%d", &mat[i][j]);
+            }
+        }
 
         int ok = 1;
 
@@ -44,21 +47,16 @@ int main(void) {
                 }
             }
         }
-
        
         printf("Instancia %d\n", inst);
-        
-        //printf de sim ou nao
         switch (ok) {
             case 1:
-                puts("SIM");   /* imprime "SIM\n" */
+                printf("SIM\n\n");
                 break;
             default:
-                puts("NAO");   /* imprime "NAO\n" */
+                printf("NAO\n\n");
                 break;
         }
-        puts(""); /* linha em branco após cada instância */
-    }
 
     return 0; 
 }
