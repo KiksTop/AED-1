@@ -1,32 +1,41 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(void) {
-    int NC;
-    if (scanf("%d", &NC) != 1) return 0;
+void insercao (int v[], int n)
+{
+   int i, j, x;
 
-    while (NC--) {
-        int N;
-        scanf("%d", &N);
-        int *a = (int*)malloc(N * sizeof(int));
+   for (i = 1; i < n; i++) {
+      x = v[i];
+      j = i - 1;
 
-        for (int i = 0; i < N; i++)
-            scanf("%d", &a[i]);
+      while (j >= 0 && v[j] > x) {
+         v[j+1] = v[j];
+         j--;
+      }
+      v[j+1] = x;
+   }
+}
 
-        // Insertion Sort
-        for (int i = 1; i < N; i++) {
-            int key = a[i], j = i - 1;
-            while (j >= 0 && a[j] > key) {
-                a[j + 1] = a[j];
-                j--;
-            }
-            a[j + 1] = key;
-        }
+int main (void)
+{
+   int casos;
+   if (scanf("%d", &casos) != 1) return 0;
 
-        for (int i = 0; i < N; i++)
-            printf("%d%c", a[i], i == N - 1 ? '\n' : ' ');
+   while (casos--) {
+      int n;
+      scanf("%d", &n);
 
-        free(a);
-    }
-    return 0;
+      int *v = malloc(n * sizeof(int));
+      for (int i = 0; i < n; i++)
+         scanf("%d", &v[i]);
+
+      insercao(v, n);
+
+      for (int i = 0; i < n; i++)
+         printf("%d%c", v[i], (i == n - 1) ? '\n' : ' ');
+
+      free(v);
+   }
+   return 0;
 }
